@@ -1,0 +1,53 @@
+<?php
+// Database connection
+$con = mysqli_connect("localhost", "root", "", "shop_db");
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST["update"])) {
+    $id = mysqli_real_escape_string($con, $_POST['id']);
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $price = mysqli_real_escape_string($con, $_POST['price']);
+    $description = mysqli_real_escape_string($con, $_POST['description']);
+    
+    $update = "UPDATE products SET name='$name', price='$price', description='$description'";
+
+    // Check if a new image was uploaded
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $image_location = $_FILES['image']['tmp_name'];
+        $image_name = $_FILES['image']['name'];
+        $image_size = $_FILES['image']['size'];
+        $image_type = $_FILES['image']['type'];
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $max_size = 5 * 1024 * 1024;
+        
+        if (in_array($image_type, $allowed_types) && $image_size <= $max_size) {
+            $new_image_name = md5(time() . $image_name) . '.' . pathinfo($image_name, PATHINFO_EXTENSION);
+            $upload_directory = 'images/';
+            $image_path = $upload_directory . $new_image_name;
+            
+            if (move_uploaded_file($image_location, $image_path)) {
+                $update .= ", image='$image_path'";
+            } else {
+                $message = 'Failed to upload the new product image.';
+            }
+        } else {
+            $message = 'Invalid file type or size. Please upload a valid image file.';
+        }
+    }
+
+    $update .= " WHERE id='$id'";
+    
+    if (mysqli_query($con, $update)) {
+        $message = 'Product updated successfully!';
+    } else {
+        $message = 'Failed to update product: ' . mysqli_error($con);
+    }
+
+    mysqli_close($con);
+
+    // Redirect to popup page with message
+    header("Location: popup.html?message=" . urlencode($message));
+    exit();
+}

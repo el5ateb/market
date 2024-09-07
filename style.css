@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+:root {
+  --blue: #3498db;
+  --dark-blue: #2980b9;
+  --green: #2ecc71;
+  --dark-green: #27ae60;
+  --red: #e74c3c;
+  --orange: #f39c12;
+  --black: #333;
+  --white: #fff;
+  --light-bg: #f4f4f4;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --border: 2px solid var(--black);
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-bg);
+  color: #333;
+}
+
+h3 {
+  color: #333;
+  font-weight: 600;
+  margin: 30px 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  width: 16rem;
+  margin: 15px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.btn-info {
+  background-color: var(--blue);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-info:hover {
+  background-color: var(--dark-blue);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navbar {
+  margin-bottom: 30px;
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.navbar .nav-link {
+  font-size: 1rem;
+  color: #333;
+  margin-right: 20px;
+}
+
+.navbar .nav-link:hover {
+  color: var(--dark-blue);
+}
+
+.btn-primary {
+  background-color: var(--green);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-green);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .popup {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <p id="message"></p>
+  </div>
+
+  <script>
+    // Get message from query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    
+    // Display the message
+    document.getElementById('message').textContent = message;
+
+    // Redirect after 5 seconds
+    setTimeout(() => {
+      window.location.href = 'index.php';
+    }, 1000);
+  </script>
+</body>
+</html>
